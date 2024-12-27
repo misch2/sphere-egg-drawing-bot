@@ -28,6 +28,12 @@ Use `$30=255` to set the top limit for servo to 255 (originally it's set to 1000
 I checked the PWM using oscilloscope and it looks like S70 produces 1ms pulses while S200 produces 2ms pulses so any value between these is suitable for the SG90 servo.
 
 
+Coords system:
+X = rotate egg (=long side of the virtual rectangle)
+Y = rotate pen (=short side of the virtual rectangle)
+Point \[0;0\] is at the center of the egg
+Z axis is not used, instead the "M3 S70" and "M3 S100" is used to raise or lower the pen (adjust the height as necessary).
+
 
 My stepper motor uses 200 steps per full revolution.
 The DRV8825 drivers are set up to 16 microsteps
