@@ -28,3 +28,13 @@ Use `$30=255` to set the top limit for servo to 255 (originally it's set to 1000
 I checked the PWM using oscilloscope and it looks like S70 produces 1ms pulses while S200 produces 2ms pulses so any value between these is suitable for the SG90 servo.
 
 
+
+My stepper motor uses 200 steps per full revolution.
+The DRV8825 drivers are set up to 16 microsteps
+Therefore it has 200 * 16 = 3200 steps per revolution, i.e. 3200 virtual "pixels" around the egg axis.
+
+GRBL uses physical (metric or imperial) distances so let's say we want 100 mm to be a full circle (3200 steps). In that case:
+$100 (=$101) = 3200/100 = 32 steps/mm
+
+Speed should also be adjusted. For a full rotation in let's say 5 seconds it would be 100 mm steps per 5 seconds i.e. 100 * (60/5) = 1200 mm per minute:
+$110 (=$111) = 100mm * (60 sec / 5 seconds) = 1200 mm/min
