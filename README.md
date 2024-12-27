@@ -38,3 +38,6 @@ $100 (=$101) = 3200/100 = 32 steps/mm
 
 Speed should also be adjusted. For a full rotation in let's say 5 seconds it would be 100 mm steps per 5 seconds i.e. 100 * (60/5) = 1200 mm per minute:
 $110 (=$111) = 100mm * (60 sec / 5 seconds) = 1200 mm/min
+
+Similarly for the acceleration:
+$120 (=$121) = for example 20 mm / 1sec^2
