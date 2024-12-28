@@ -40,10 +40,44 @@ The coordinate system is expected be positive to the top right with a zero at th
 
 ### Units
 
+My stepper motor uses 200 steps per full revolution:
 
-My stepper motor uses 200 steps per full revolution.
-The DRV8825 drivers are set up to 16 microsteps
+```
+steps_per_revolution = 200
+```
+
+The DRV8825 drivers can be set up to 32 microsteps per step:
+
+```
+microsteps = 32
+```
+
+The X axis motor has full 360 degrees range while the Y axis can swing approx 90 degrees:
+
+```
+x_rotation_degrees = 360
+y_rotation_degrees = 90
+```
+
 Therefore it has 200 * 16 = 3200 steps per revolution, i.e. 3200 virtual "pixels" around the egg axis.
+
+```
+x_size = steps_per_revolution * microsteps * x_rotation_degrees/360   # 6400
+y_size = steps_per_revolution * microsteps * y_rotation_degrees/360   # 1600
+```
+
+Let's convert this to physical units because that's what GRBL expects. It's also a lot easier to specify velocity or acceleration in physical units. An average egg may have diameter around 45 mm so we will use this for an approximate conversion:
+
+```
+diameter_mm = 45
+```
+
+```
+circumference_mm = diameter_mm * 3.14   # 141
+steps_per_mm = x_size / circumference_mm   # 45
+```
+
+
 
 GRBL uses physical (metric or imperial) distances so let's say we want 100 mm to be a full circle (3200 steps). In that case:
 $100 (=$101) = 3200/100 = 32 steps/mm
