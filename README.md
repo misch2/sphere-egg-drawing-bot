@@ -66,10 +66,12 @@ x_size = steps_per_revolution * microsteps * x_rotation_degrees/360   # 6400
 y_size = steps_per_revolution * microsteps * y_rotation_degrees/360   # 1600
 ```
 
-Let's convert this to physical units because that's what GRBL expects. It's also a lot easier to specify velocity or acceleration in physical units. An average egg may have diameter around 45 mm so we will use this for an approximate conversion:
+Let's convert this to physical units because that's what GRBL expects. It's also a lot easier to specify velocity or acceleration in physical units. An average egg may have diameter around 45 mm so we will use this for an approximate conversion. We can also define a few additional constants:
 
 ```
 diameter_mm = 45
+max_speed_mm_per_s = 50
+max_accel_mm_per_s2 = 20
 ```
 
 ```
@@ -77,13 +79,15 @@ circumference_mm = diameter_mm * 3.14   # 141
 steps_per_mm = x_size / circumference_mm   # 45
 ```
 
+And settings for GRBL would be:
 
+```
+$100 (=$101) = steps_per_mm   # 45
 
-GRBL uses physical (metric or imperial) distances so let's say we want 100 mm to be a full circle (3200 steps). In that case:
-$100 (=$101) = 3200/100 = 32 steps/mm
-
-Speed should also be adjusted. For a full rotation in let's say 5 seconds it would be 100 mm steps per 5 seconds i.e. 100 * (60/5) = 1200 mm per minute:
-$110 (=$111) = 100mm * (60 sec / 5 seconds) = 1200 mm/min
+Speed should also be adjusted. For a full rotation in let's say 10 seconds it would be 100 mm steps per 5 seconds i.e. 100 * (60/5) = 1200 mm per minute:
+$110 (=$111) = max_speed_mm_per_s * 60   # 3000
 
 Similarly for the acceleration:
-$120 (=$121) = for example 20 mm / 1sec^2
+$120 (=$121) = max_accel_mm_per_s2   # 20
+```
+
