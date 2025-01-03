@@ -91,3 +91,14 @@ Similarly for the acceleration:
 $120 (=$121) = max_accel_mm_per_s2   # 20
 ```
 
+But if we want to use pixels (6400 x 1600) then we can set:
+
+```
+$100 (=$101) = 1
+
+Speed should also be adjusted. For a full rotation in let's say 10 seconds it would be 100 mm steps per 5 seconds i.e. 100 * (60/5) = 1200 mm per minute:
+$110 (=$111) = 130000
+
+Similarly for the acceleration:
+$120 (=$121) = 900
+```
