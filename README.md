@@ -80,8 +80,10 @@ steps_per_mm = x_size / circumference_mm   # 45.271
 ```
 
 (A step aside: we can use this calculated physical distance in Inkscape too, for a better relation between line stroke width and the whole drawing:
+```
 page_width_mm = circumference_mm   # 141.38
 page_height_mm = circumference_mm * y_size / x_size   # 35.345
+```
 )
 
 And settings for GRBL would be:
