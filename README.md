@@ -75,14 +75,14 @@ max_accel_mm_per_s2 = 20
 ```
 
 ```
-circumference_mm = diameter_mm * 3.14   # 141
-steps_per_mm = x_size / circumference_mm   # 45
+circumference_mm = diameter_mm * 3.14   # 141.38
+steps_per_mm = x_size / circumference_mm   # 45.271
 ```
 
 And settings for GRBL would be:
 
 ```
-$100 (=$101) = steps_per_mm   # 45
+$100 (=$101) = steps_per_mm   # 45.271
 
 Speed should also be adjusted. For a full rotation in let's say 10 seconds it would be 100 mm steps per 5 seconds i.e. 100 * (60/5) = 1200 mm per minute:
 $110 (=$111) = max_speed_mm_per_s * 60   # 3000
